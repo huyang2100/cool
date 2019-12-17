@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 .add(titles[5], BFragment.class)
                 .create());
 
+        //test
+
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(adapter);
 

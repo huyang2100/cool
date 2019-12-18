@@ -36,7 +36,9 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract View onCreateSuccessView();
 
-    public void show(){
+    @Override
+    public void onStart() {
+        super.onStart();
         pageView.show();
     }
 }

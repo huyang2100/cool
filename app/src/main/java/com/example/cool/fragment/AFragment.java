@@ -31,23 +31,13 @@ public class AFragment extends BaseFragment<CourtResponse.Court> {
         MyBaseAdapter myAdapter = new MyBaseAdapter<CourtResponse.Court, AHolder>(dataList) {
 
             @Override
-            protected List<CourtResponse.Court> onLoadMore() {
-                //TODO del
-                try {
-                    Thread.sleep(1500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            protected String getMethodName() {
+                return "getCourts";
+            }
 
-                ArrayList<CourtResponse.Court> list = new ArrayList<>();
-
-                CourtResponse.Court court;
-                for (int i = 0; i < 20; i++) {
-                    court = new CourtResponse.Court();
-                    court.name = "法院：" + i;
-                    list.add(court);
-                }
-                return list;
+            @Override
+            protected Class getServiceClass() {
+                return CourtService.class;
             }
 
             @Override

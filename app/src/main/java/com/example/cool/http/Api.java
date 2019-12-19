@@ -1,5 +1,7 @@
 package com.example.cool.http;
 
+import com.example.cool.utils.LogUtil;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -23,10 +25,13 @@ public class Api {
             call.enqueue(callback);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
+            LogUtil.i(TAG, "enqueue: "+e);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+            LogUtil.i(TAG, "enqueue: "+e);
         } catch (InvocationTargetException e) {
             e.printStackTrace();
+            LogUtil.i(TAG, "enqueue: "+e);
         }
     }
 }

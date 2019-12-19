@@ -7,9 +7,14 @@ import android.widget.BaseAdapter;
 
 import com.example.cool.R;
 import com.example.cool.holder.MoreHolder;
+import com.example.cool.http.Api;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public abstract class MyBaseAdapter<T, H> extends BaseAdapter {
     private static final int MORE_SIZE = 20;
@@ -120,33 +125,44 @@ public abstract class MyBaseAdapter<T, H> extends BaseAdapter {
 
     private void loadMore() {
         moreHolder.showLoading();
-        new Thread(new Runnable() {
+        Api.enqueue(getServiceClass(), getMethodName(), new Callback<BaseResponse<T>>() {
             @Override
-            public void run() {
-                final List<T> moreList = onLoadMore();
-
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (moreList == null) {
-                            moreHolder.showRetry();
-                        } else {
-                            if (moreList.size() < MORE_SIZE) {
-                                moreHolder.showEmpty();
-                            } else {
-                                moreHolder.showLoading();
-                            }
-
-                            dataList.addAll(moreList);
-                            notifyDataSetChanged();
-                        }
+            public void onResponse(Call<BaseResponse<T>> call, Response<BaseResponse<T>> response) {
+                if(response.code() == 200){
+                    BaseResponse<T> body = response.body();
+                    if(body == null){
+                        moreHolder.showRetry();
+                        return;
                     }
-                });
+
+                    ArrayList<T> moreList = body.data;
+                    if (moreList == null) {
+                        moreHolder.showRetry();
+                    } else {
+                        if (moreList.size() < MORE_SIZE) {
+                            moreHolder.showEmpty();
+                        } else {
+                            moreHolder.showLoading();
+                        }
+
+                        dataList.addAll(moreList);
+                        notifyDataSetChanged();
+                    }
+                }else{
+                    moreHolder.showRetry();
+                }
             }
-        }).start();
+
+            @Override
+            public void onFailure(Call<BaseResponse<T>> call, Throwable t) {
+
+            }
+        });
     }
 
-    protected abstract List<T> onLoadMore();
+    protected abstract String getMethodName();
+
+    protected abstract Class getServiceClass();
 
     /**
      * 刷新holder

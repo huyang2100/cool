@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -32,4 +37,8 @@ dependencies {
     implementation 'com.ogaclejapan.smarttablayout:library:1.7.0@aar'
     //Optional: see how to use the utility.
     implementation 'com.ogaclejapan.smarttablayout:utils-v4:1.7.0@aar'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.7.0'
+    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.7.0'
 }

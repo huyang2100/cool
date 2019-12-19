@@ -2,18 +2,12 @@ package com.example.cool.activity;
 
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-
-import com.example.cool.Base.BaseActivity;
-import com.example.cool.Base.BaseFragment;
+import com.example.cool.base.BaseActivity;
 import com.example.cool.R;
 import com.example.cool.fragment.AFragment;
 import com.example.cool.fragment.BFragment;
 import com.example.cool.fragment.CFragment;
 import com.example.cool.fragment.DFragment;
-import com.example.cool.utils.LogUtil;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;

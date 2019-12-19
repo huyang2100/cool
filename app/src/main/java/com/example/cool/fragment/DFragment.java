@@ -3,13 +3,26 @@ package com.example.cool.fragment;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.cool.Base.BaseFragment;
-import com.example.cool.ui.PageView;
+import com.example.cool.base.BaseFragment;
+import com.example.cool.http.IService.CourtService;
+
+import java.util.ArrayList;
 
 public class DFragment extends BaseFragment {
+
     @Override
-    protected PageView.State onLoad() {
-        return PageView.State.SUCCESS;
+    protected void refreshSuccessView(ArrayList dataList) {
+
+    }
+
+    @Override
+    protected String getMethodName() {
+        return null;
+    }
+
+    @Override
+    protected Class<CourtService> getServiceClazz() {
+        return null;
     }
 
     @Override

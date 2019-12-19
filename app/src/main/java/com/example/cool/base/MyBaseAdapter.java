@@ -1,10 +1,9 @@
-package com.example.cool.Base;
+package com.example.cool.base;
 
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import com.example.cool.R;
 import com.example.cool.holder.MoreHolder;

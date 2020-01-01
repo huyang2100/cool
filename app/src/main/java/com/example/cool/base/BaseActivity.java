@@ -12,9 +12,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TAG = getClass().getSimpleName();
+        initFlag();
         setContentView(getResourceId());
         initView();
         initData();
+    }
+
+    protected void initFlag() {
+
     }
 
     protected abstract int getResourceId();

@@ -14,4 +14,5 @@
         <item>推荐</item>
         <item>分类</item>
     </array>
+    <string name="title_activity_install_apk">InstallApkActivity</string>
 </resources>

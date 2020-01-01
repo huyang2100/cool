@@ -1,5 +1,7 @@
 package com.example.cool.activity;
 
+import android.widget.Toast;
+
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cool.base.BaseActivity;
@@ -8,9 +10,18 @@ import com.example.cool.fragment.AFragment;
 import com.example.cool.fragment.BFragment;
 import com.example.cool.fragment.CFragment;
 import com.example.cool.fragment.DFragment;
+import com.example.cool.utils.LogUtil;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
+
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class MainActivity extends BaseActivity {
 
@@ -45,5 +56,12 @@ public class MainActivity extends BaseActivity {
 
         viewPager.setAdapter(adapter);
         viewPagerTab.setViewPager(viewPager);
+
+        //延时10秒，开始一个任务
+        Observable.timer(10, TimeUnit.SECONDS).subscribe(aLong->{
+            MainActivity.this.runOnUiThread(()->{
+                Toast.makeText(this, "hello: timer", Toast.LENGTH_SHORT).show();
+            });
+        });
     }
 }

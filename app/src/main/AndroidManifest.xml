@@ -22,6 +22,7 @@
             android:name=".activity.LockActivity"
             android:excludeFromRecents="true"
             android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:launchMode="singleInstance"
             android:noHistory="true"
             android:screenOrientation="portrait" />
